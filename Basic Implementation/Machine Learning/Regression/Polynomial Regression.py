@@ -22,34 +22,17 @@ y = dataset.iloc[:, 1:].values
 
 
 ###################### 2- Preprocessing ######################
-# SCALING
-
-#sc_x = StandardScaler()
-#sc_y = StandardScaler()
-## Scale X
-#X_train = sc_x.fit_transform(X_train)
-#X_test = sc_x.transform(X_test)
-## Scale y
-#y_train = sc_y.fit_transform(y_train)
-#y_test = sc_y.transform(y_test)
-
-# Encoding labels
-
-#col = [] # Columns to be encoded
-#labelEnc = LabelEncoder()
-#X[:, col] = labelEnc.fit_transform(X[:, col])
-#
-#oneHotEnc = OneHotEncoder(categorical_features=[col])
-#X = oneHotEnc.fit_transform(X).toarray()
-
-# Split data
-test_train_ratio = 0.2
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = test_train_ratio)
+# preprocess
 
 # Convert features to polynomial
 poly_deg = 4
 polyFeatures = PolynomialFeatures(degree = poly_deg)
 X_poly = polyFeatures.fit_transform(X)
+
+# Split data
+test_train_ratio = 0.2
+X_train, X_test, y_train, y_test = train_test_split(X_poly, y, test_size = test_train_ratio)
+
 
 
 ###################### 3- Training ######################
